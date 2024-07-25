@@ -36,6 +36,12 @@
                             </p>
                             <p class="card-text">
                                 <strong>
+                                    Autore:
+                                </strong>
+                                {{ $post->user?->name ?: 'Ace' }}
+                            </p>
+                            <p class="card-text">
+                                <strong>
                                     Slug:
                                 </strong>
                                 {{ $post->slug }}
