@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Type;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -18,6 +19,7 @@ class PostController extends Controller
     public function index()
     {
 
+        // $posts = Post::where('user_id', Auth::user()->id)->get();
         $posts = Post::all();
 
 
@@ -45,6 +47,9 @@ class PostController extends Controller
         // dd($request->all());
         $data = $request->validated();
 
+        $current_user = Auth::user()->id;
+        // dd($current_user);
+
         // dd($request->all());
 
 
@@ -68,6 +73,7 @@ class PostController extends Controller
         $post->slug = $data['slug'];
         $post->cover_image = $img_path;
         $post->type_id = $data['type_id'];
+        $post->user_id = $current_user;
         // $post->type_id = $request->input('type_id');
         $post->save();
         return redirect()->route('admin.posts.index')->with('message', 'Progetto creato correttamente');
