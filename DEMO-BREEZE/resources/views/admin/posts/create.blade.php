@@ -37,6 +37,27 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="post-title" class="form-label">Technologie utilizzate
+                        </label>
+                        <div>
+                            @foreach ($technologies as $technology)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" id="technology-{{ $technology->id }}"
+                                        value="{{ $technology->id }}" name="technologies[]"
+                                        {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="technology-{{ $technology->id }}">
+                                        {{ $technology->title }}
+                                    </label>
+                                </div>
+                            @endforeach
+
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="mb-3">
                         <label for="post-content" class="form-label">Descrizione</label>
                         <textarea class="form-control" id="post-content" rows="5" name="content"></textarea>
                     </div>

@@ -26,7 +26,8 @@ class UpdatePostRequest extends FormRequest
             'title' => ['required', Rule::unique('posts')->ignore($this->post), 'max:60'],
             'content' => ['nullable'],
             'cover_image' => ['nullable', 'image', 'max:2048'],
-            'type_id' => ['nullable', 'exists:types,id']
+            'type_id' => ['nullable', 'exists:types,id'],
+            'tags' => ['nullable', 'exists:technologies, id']
         ];
     }
 }
